@@ -1,26 +1,30 @@
 {
   "devDependencies": {
-    "jasmine": "^3.9.0"
+    "@types/jest": "^27.0.2",
+    "jest": "^27.2.5",
+    "ts-jest": "^27.0.6",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.4"
   },
   "name": "salesman",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "dependencies": {
     "balanced-match": "^1.0.2",
     "brace-expansion": "^1.1.11",
     "concat-map": "^0.0.1",
-    "glob": "^7.2.0",
     "fs.realpath": "^1.0.0",
+    "glob": "^7.2.0",
     "inflight": "^1.0.6",
     "inherits": "^2.0.4",
     "minimatch": "^3.0.4",
-    "jasmine-core": "^3.9.0",
     "once": "^1.4.0",
     "path-is-absolute": "^1.0.1",
     "wrappy": "^1.0.2"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
