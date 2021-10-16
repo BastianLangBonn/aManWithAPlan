@@ -1,12 +1,13 @@
-import { Places } from "../../data/RegionOfInterest";
+import { Place } from "../../data/Place";
 import { runToTheHills } from "../../data/TestProblems";
 import { Problem } from "../../model/Problem";
+import { RegionOfInterest } from "../../model/RegionOfInterest";
 
 describe("Constructor", () => {
 
     describe("Illegal", () => {
         test("should throw error when empty string", () => {
-            expect(() => new Problem([])).toThrow();
+            expect(() => new Problem([])).toThrow(/Illegal Argument/gi);
         });
     });
 
@@ -27,16 +28,17 @@ describe("Constructor", () => {
         })
 
         test("should have parsed correct objective", () => {
-            const objective = Places.PRINCESS;
-            expect(subject.objective).toMatch(objective);
+            const objective = Place.PRINCESS;
+            expect(subject.objective).toEqual(objective);
         });
 
         test("should have parsed correct regions of interest", () => {
             const numberOfROIs = 3;
-            const rois = [Places.HOUSE, Places.CASTLE, Places.PRINCESS];
 
             expect(subject.regionsOfInterest.length).toEqual(numberOfROIs);
-            rois.forEach(roi => expect(subject.regionsOfInterest).toContain(roi));
+            expect(subject.regionsOfInterest.some(roi => roi.place === Place.HOUSE))
+            expect(subject.regionsOfInterest.some(roi => roi.place === Place.CASTLE))
+            expect(subject.regionsOfInterest.some(roi => roi.place === Place.PRINCESS))
         });
     });
 
