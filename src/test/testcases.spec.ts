@@ -7,6 +7,6 @@ describe("Run to the Hills", () =>
     test("should resolve in 9 turns", () => {
         const problem: Problem = new Problem(runToTheHills);
         const solution: Solution = Solver.solve(problem);
-        expect(solution).toEqual(9);
+        expect(solution.numberOfTurns).toEqual(9);
     })
 );
