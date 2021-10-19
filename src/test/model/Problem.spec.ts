@@ -1,7 +1,7 @@
 import { Place } from "../../data/Place";
+import { Position } from "../../data/Position";
 import { runToTheHills } from "../../data/TestProblems";
 import { Problem } from "../../model/Problem";
-import { RegionOfInterest } from "../../model/RegionOfInterest";
 
 describe("Constructor", () => {
 
@@ -32,13 +32,23 @@ describe("Constructor", () => {
             expect(subject.objective).toEqual(objective);
         });
 
-        test("should have parsed correct regions of interest", () => {
+        test("should have parsed all regions of interest", () => {
             const numberOfROIs = 3;
 
             expect(subject.regionsOfInterest.length).toEqual(numberOfROIs);
             expect(subject.regionsOfInterest.some(roi => roi.place === Place.HOUSE))
             expect(subject.regionsOfInterest.some(roi => roi.place === Place.CASTLE))
             expect(subject.regionsOfInterest.some(roi => roi.place === Place.PRINCESS))
+        });
+
+        test("should have parsed correct positions for regions of interests", () => {
+            const housePosition: Position = new Position(0, 4);
+            const princessPosition: Position = new Position(2, 2);
+            const castlePosition: Position = new Position(4, 0);
+            
+            expect(subject.regionsOfInterest.find(roi => roi.place === Place.HOUSE)?.position).toEqual(housePosition);
+            expect(subject.regionsOfInterest.find(roi => roi.place === Place.PRINCESS)?.position).toEqual(princessPosition);
+            expect(subject.regionsOfInterest.find(roi => roi.place === Place.CASTLE)?.position).toEqual(castlePosition);
         });
     });
 

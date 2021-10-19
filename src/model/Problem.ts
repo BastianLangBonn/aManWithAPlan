@@ -1,4 +1,5 @@
 import { Place as Place } from "../data/Place";
+import { Position } from "../data/Position";
 import { RegionOfInterest } from "./RegionOfInterest";
 
 export class Problem {
@@ -34,13 +35,15 @@ export class Problem {
         const objective: string = encodedProblem[1];
         const regionsOfInterest: RegionOfInterest[] = [];
         for (let i=0; i<numberOfRois; i++) {
-            const roi: keyof typeof Place = encodedProblem[2+height+i] as keyof typeof Place;
-            regionsOfInterest.push(new RegionOfInterest(Place[roi]))
+            const line = encodedProblem[2+height+i].split(" ");
+            const identifier: string = line[0];
+            const place: Place = Place[identifier as keyof typeof Place]; 
+            const position: Position = new Position(+line[1], +line[2]);
+            regionsOfInterest.push(new RegionOfInterest(place, position))
         }
-        console.info(regionsOfInterest);
         this._width = width;
         this._height = height;
-        this._objective = Place.PRINCESS;
+        this._objective = Place[objective as keyof typeof Place];
         this._regionsOfInterest = regionsOfInterest;
 
     }
